@@ -1,0 +1,139 @@
+@use 'sass:color';
+
+$primary-color: #c9a84c;       
+$secondary-color: #1a1a2e;     
+$card-bg: #ffffff;
+$text-color: #2d2d2d;
+$text-muted: #6b7280;
+$border-radius: 16px;
+$font-size-base: 16px;
+$font-size-title: 22px;
+$font-size-price: 24px;
+$transition: 0.3s ease;
+
+
+@mixin button($bg-color, $text-color: #fff) {
+  display: inline-block;
+  padding: 12px 28px;
+  background: $bg-color;
+  color: $text-color;
+  font-size: $font-size-base;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background $transition, transform $transition, box-shadow $transition;
+
+  &:hover {
+    background: color.adjust($bg-color, $lightness: -10%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba($bg-color, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $secondary-color;
+  font-family: 'Georgia', serif;
+  padding: 32px;
+}
+
+
+.card {
+  width: 360px;
+  background: $card-bg;
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  transition: transform $transition, box-shadow $transition;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  }
+
+  
+  &__image-wrap {
+    position: relative;
+    overflow: hidden;
+    height: 240px;
+
+    &:hover .card__image {
+      transform: scale(1.05);
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  
+  &__badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: $primary-color;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  
+  &__body {
+    padding: 24px;
+  }
+
+  &__title {
+    font-size: $font-size-title;
+    color: $text-color;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  &__description {
+    font-size: 14px;
+    color: $text-muted;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__price {
+    font-size: $font-size-price;
+    font-weight: 700;
+    color: $primary-color;
+  }
+}
+
+
+.btn {
+  @include button($primary-color, #1a1a2e);
+}
